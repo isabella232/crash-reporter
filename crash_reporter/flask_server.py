@@ -17,12 +17,14 @@ def report():
       idstr = str(id).zfill(4)
       filename = 'crash-' + date + "-" +  idstr + '.json'
       crashfile = join(crash_dir, filename)
-      if not exists(crashfile):
-        break;
-      id += 1
-    with open(crashfile, 'w') as outfile:
-      json.dump(report, outfile)
-      return (date + "-" + idstr, 200)
+      try:
+          fd = open(crashfile, 'x')
+          json.dump(report, fd)
+          break
+      except FileExistsError:
+          id += 1
+          continue
+    return (date + "-" + idstr, 200)
 
 @app.route("/list", methods=["GET"])
 def list():
