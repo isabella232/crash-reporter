@@ -10,6 +10,7 @@ setup(
     packages=['crash_reporter'],
     install_requires=[
         'flask',
+        'Flask-HTTPAuth',
     ],
     entry_points={
         'console_scripts': [
