@@ -1,1 +1,1 @@
-{"port": 6000, "crash_dir": "/tmp/crashes/"}
+{"port": 6000, "crash_dir": "/tmp/crashes/", "read_secret": "xxx", "write_secret", "xxx"}
