@@ -12,14 +12,16 @@ def report():
     report = request.get_json()
     id = 0
     idstr = None
-    date = datetime.today().strftime('%Y-%m-%d')
+    now = datetime.now()
+    report["report-time"] = now.isoformat()
+    date = now.strftime('%Y-%m-%d')
     while True:
       idstr = str(id).zfill(4)
       filename = 'crash-' + date + "-" +  idstr + '.json'
       crashfile = join(crash_dir, filename)
       try:
           fd = open(crashfile, 'x')
-          json.dump(report, fd)
+          json.dump(report, fd, indent=2)
           break
       except FileExistsError:
           id += 1
